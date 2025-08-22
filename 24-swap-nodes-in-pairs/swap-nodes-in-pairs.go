@@ -6,10 +6,6 @@
  * }
  */
 func swapPairs(head *ListNode) *ListNode {
-    if head == nil {
-        return nil
-    }
-
     dummy := &ListNode{
         Next: head,
     }
