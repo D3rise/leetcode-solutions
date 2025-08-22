@@ -64,13 +64,13 @@ func (this *MyLinkedList) AddAtIndex(index int, val int)  {
         Val: val,
     }
 
-    if index != 0 && this.head == nil {
-        return
-    }
-
     if index == 0 {
         newNode.Next = this.head
         this.head = &newNode
+        return
+    }
+
+    if this.head == nil {
         return
     }
 
@@ -112,11 +112,7 @@ func (this *MyLinkedList) DeleteAtIndex(index int)  {
         current = current.Next
     }
 
-    if current == nil {
-        return
-    }
-
-    if current.Next == nil {
+    if current == nil || current.Next == nil {
         return
     }
 
