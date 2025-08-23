@@ -10,71 +10,23 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
     p2 := l2
 
     dummy := &ListNode{}
-    var remainder bool
+    remainder := 0
 
     current := dummy
-    for p1 != nil && p2 != nil {
-        sum := p1.Val + p2.Val
-        if remainder {
-            sum++
-            remainder = false
-        }
+    for p1 != nil || p2 != nil || remainder > 0 {
+        x, y := 0, 0
+        if p1 != nil { x = p1.Val }
+        if p2 != nil { y = p2.Val }
 
-        if sum >= 10 {
-            sum = sum % 10
-            remainder = true
-        }
-
+        sum := x + y + remainder
+        remainder = sum / 10
         current.Next = &ListNode{
-            Val: sum,
+            Val: sum % 10,
         }
         current = current.Next
-        p1 = p1.Next
-        p2 = p2.Next
-    }
-
-    for p1 != nil {
-        val := p1.Val
-        if remainder {
-            val++
-            remainder = false
-        }
-
-        if val >= 10 {
-            val = val % 10
-            remainder = true
-        }
-
-        current.Next = &ListNode{
-            Val: val,
-        }
-        current = current.Next
-        p1 = p1.Next
-    }
-
-    for p2 != nil {
-        val := p2.Val
-        if remainder {
-            val++
-            remainder = false
-        }
-
-        if val >= 10 {
-            val = val % 10
-            remainder = true
-        }
-
-        current.Next = &ListNode{
-            Val: val,
-        }
-        current = current.Next
-        p2 = p2.Next
-    }
-
-    if remainder {
-        current.Next = &ListNode{
-            Val: 1,
-        }
+        
+        if p1 != nil { p1 = p1.Next }
+        if p2 != nil { p2 = p2.Next }
     }
 
     return dummy.Next
