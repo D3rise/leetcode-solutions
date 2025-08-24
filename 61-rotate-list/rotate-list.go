@@ -1,10 +1,3 @@
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
 func rotateRight(head *ListNode, k int) *ListNode {
     if head == nil {
         return nil
@@ -20,6 +13,9 @@ func rotateRight(head *ListNode, k int) *ListNode {
         k--
     }
 
+    // if fast is nil by the end of the cycle,
+    // then the k is equal to the length of the
+    // linked list and there is nothing to rotate
     if fast == nil {
         return head
     }
